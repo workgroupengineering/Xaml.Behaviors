@@ -83,6 +83,7 @@
         <article data-uid="">
 <h1 id="datatriggerbehavior">DataTriggerBehavior</h1>
 
+<p>When a string <code>Value</code> cannot be converted to the runtime type of <code>Binding</code>, the comparison uses non-equal semantics instead of throwing: <code>NotEqual</code> evaluates to <code>true</code>, while the other comparison operators evaluate to <code>false</code>.</p>
 <p><code>DataTriggerBehavior</code> is a behavior that listens for changes to a bound value and invokes actions when the value meets a specified condition.</p>
 <h2 id="properties">Properties</h2>
 <ul>
@@ -101,6 +102,13 @@
         &lt;/DataTriggerBehavior&gt;
     &lt;/Interaction.Behaviors&gt;
 &lt;/TextBlock&gt;
+</code></pre>
+<p>For <code>Equal</code> and <code>NotEqual</code> comparisons, <code>null</code> is a valid bound value. Relational comparisons with <code>null</code> remain inactive, and an omitted <code>Binding</code> is not treated as a bound <code>null</code> value.</p>
+<pre><code class="lang-xml">&lt;DataTriggerBehavior Binding=&quot;{Binding SelectedItem}&quot;
+                     ComparisonCondition=&quot;Equal&quot;
+                     Value=&quot;{x:Null}&quot;&gt;
+    &lt;ChangePropertyAction PropertyName=&quot;Text&quot; Value=&quot;No item selected&quot; /&gt;
+&lt;/DataTriggerBehavior&gt;
 </code></pre>
 <h2 id="datatrigger">DataTrigger</h2>
 <p><code>DataTrigger</code> is a deprecated class that functions similarly to <code>DataTriggerBehavior</code> but inherits from <code>Trigger</code>. It is recommended to use <code>DataTriggerBehavior</code> instead.</p>
